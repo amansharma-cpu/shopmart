@@ -12,7 +12,7 @@ const {
   authorizeRoles,
 } = require("../middlewares/authMiddleware");
 
-// Only admin can access
+//  Only admin can access
 router.get(
   "/vendors/pending",
   protect,

@@ -15,18 +15,18 @@ const {
   authorizeRoles,
 } = require("../middlewares/authMiddleware");
 
-// 🔹 Customer Routes
+//  Customer Routes
 router.post("/", protect, authorizeRoles("customer"), placeOrder);
 router.get("/my-orders", protect, authorizeRoles("customer"), getMyOrders);
 router.put("/:id/cancel", protect, authorizeRoles("customer"), cancelOrder);
 
-// 🔹 Vendor Routes
+//  Vendor Routes
 router.get("/vendor", protect, authorizeRoles("vendor"), getVendorOrders);
 
-// 🔹 Admin Routes
+//  Admin Routes
 router.get("/", protect, authorizeRoles("admin"), getAllOrders);
 
-// 🔹 Vendor/Admin - Update Order Status
+//  Vendor/Admin - Update Order Status
 router.put(
   "/:id/status",
   protect,

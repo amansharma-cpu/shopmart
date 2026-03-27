@@ -2,7 +2,7 @@ const Order = require("../models/Order");
 const Product = require("../models/Product");
 const StockLog = require("../models/StockLog");
 
-// 🔥 Place Order (Customer)
+//  Place Order (Customer)
 exports.placeOrder = async (req, res) => {
   try {
     const { items, address } = req.body;
@@ -72,7 +72,7 @@ exports.placeOrder = async (req, res) => {
   }
 };
 
-// 🔥 Get Customer Orders
+//  Get Customer Orders
 exports.getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ customerId: req.user._id });
@@ -82,7 +82,7 @@ exports.getMyOrders = async (req, res) => {
   }
 };
 
-// 🔥 Get Vendor Orders
+//  Get Vendor Orders
 exports.getVendorOrders = async (req, res) => {
   try {
     const orders = await Order.find({
@@ -94,7 +94,7 @@ exports.getVendorOrders = async (req, res) => {
   }
 };
 
-// 🔥 Get All Orders (Admin)
+// Get All Orders (Admin)
 exports.getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find();
@@ -104,7 +104,7 @@ exports.getAllOrders = async (req, res) => {
   }
 };
 
-// 🔥 Update Order Status (Vendor/Admin)
+//  Update Order Status (Vendor/Admin)
 exports.updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -126,7 +126,7 @@ exports.updateOrderStatus = async (req, res) => {
     const currentIndex = validFlow.indexOf(order.orderStatus);
     const newIndex = validFlow.indexOf(status);
 
-    // ❌ Prevent invalid transitions
+    //  Prevent invalid transitions
     if (newIndex !== currentIndex + 1) {
       return res
         .status(400)
@@ -142,7 +142,7 @@ exports.updateOrderStatus = async (req, res) => {
   }
 };
 
-// 🔥 Cancel Order (Customer)
+//  Cancel Order (Customer)
 exports.cancelOrder = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
